@@ -1,4 +1,0 @@
-time, x, y, heading, heading_to_target, heading_pid, target_x, target_y
-Position: [35.518, 148.666], Heading: -179.9932, Look Ahead: 100, Finish Margin: 10
-2369, 35.518, 148.666, -179.9932, -126.1527, 0.5384057, -23.47588, 67.9212
-2384, 35.518, 148.666, -179.9932, -126.1527, 0.5384057, -23.47588, 67.9212
