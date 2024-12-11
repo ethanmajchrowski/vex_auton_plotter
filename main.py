@@ -1,34 +1,24 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QDial
+import PyQt6.QtWidgets as qwidget
 
+from mainwindow import Ui_MainWindow
 
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
+sequence = ["hello!", "i am a robot"]
 
-        self.setWindowTitle("My App")
+class MainWindow(qwidget.QMainWindow, Ui_MainWindow):
+    def __init__(self, *args, obj=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.setupUi(self)
+        self.listWidget.addItems(sequence)
 
-        button = QPushButton("Press Me!")
-        # button.setCheckable(True)
-        button.clicked.connect(self.the_button_was_clicked)
-
-        self.dial = QDial()
-        self.dial.valueChanged.connect(self.dial_change)
-
-        # Set the central widget of the Window.
-        self.setCentralWidget(self.dial)
-
-    def the_button_was_clicked(self):
-        print("Clicked!")
+        # on selection change, run sequence select
+        self.listWidget.itemSelectionChanged.connect(self.sequence_select)
     
-    def dial_change(self):
-        v = self.dial.value()
-        print((v/100)*255)
-        self.dial.setStyleSheet(f"background-color: rgb({(v/100)*255}, {(v/100)*255}, {(v/100)*255});")
+    def sequence_select(self):
+        # Get the currently selected item's text
+        print(self.listWidget.selectedItems()[0].text())
 
-app = QApplication(sys.argv)
-
+app = qwidget.QApplication(sys.argv)
 window = MainWindow()
 window.show()
-
 app.exec()
